@@ -1,0 +1,37 @@
+	
+		.main .h-top{
+						border:5px solid #eff7fc;
+						margin-left:0;
+						margin-top:0;
+						width:1118px;
+					}
+		.main p{margin-left:15px;}
+		.main .topinfo-one{font-size:15px;color:#09c;margin-top:5px;}
+
+		.main hr{
+					margin-top:5px;
+					margin-bottom:10px;
+					border:1px dotted #f2f2f2;
+					width:96%;
+					margin-left:15px;
+					}
+
+		.main .del{margin-left:88px;width:38px;height:35px;background:#ddd;font-size:12px;}
+		.main ul li{float:left;}
+		.main ul i{float:left;color:#999;margin-left:30px;}
+		.main .one li{color:#555;}
+		.main .one .frist{margin-left:67px;}
+		.main .one .second{margin-left:31px;}
+		.main .one .third{margin-left:743px;}
+		.main ul .frist input{width:45px;height:35px;background:#f9f9f9;margin-left:70px;}
+		.main ul .second input{width:107px;height:35px;background:#f9f9f9;margin-left:5px;font-size:12px;color:#444;}
+		.main ul .ssec input{width:107px;height:35px;background:#f9f9f9;margin-left:30px;font-weight:bold;}
+		.main ul .third input{width:107px;height:35px;background:#f9f9f9;margin-left:650px;}
+		.main .put{width:38px;height:23px;background:#ddd;margin-left:25px;font-size:12px;}
+		.main .bigblock{margin-left:-260px;margin-top:5px;}
+		.main .smallblock{margin-left:-1052px;margin-top:5px;}
+
+
+		.hiddentext{color:#555;}
+
+		input{border:1px solid #E6E6E6;background: #fff;}
