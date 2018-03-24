@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>管理列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+     <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+     <link rel="stylesheet" href="__PUBLIC__/css/pintuer.css">
+
+     <link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" />
+     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script> 
+    <script type="text/javascript" src="__PUBLIC__/js/cropbox.js"></script>
+
+ <!--    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/adminHandle.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+    -->
+
+
+   <script type="text/javascript">
+     $(function () {
+      $('.add-role').click(function () {
+        var obj = $(this).parents('p').clone();
+        obj.find('.add-role').remove();
+        $('#last').before(obj);
+      });
+     });
+   </script>
+    <style type="text/css">
+        #pagelist{
+            position:fixed;
+            top:470px;
+            left:10px;
+        }
+        .css input[type=text]{
+          width:260px;
+        }
+        .css2 input[type=text]{
+          width:260px;
+        }
+        .fff input[type=password]{
+          width:260px;
+        }
+        .email input[type=text] {
+          width:260px;
+        }
+        .container {
+          float:left;
+          margin-left:760px;
+          margin-top:-400px;
+          width:224px;
+        }
+        .imageBox {
+          width:220px;
+          height:250px;
+        }
+        .cropped {
+          width:220px;
+          height:250px;
+        }
+        .radio input[type=radio]{
+          float:left;
+          width:50px;
+          /*margin-left:10px;*/
+        }
+    </style>
+
+</head>
+    
+<body>
+<div class="page-toolbar">
+    <div class="page-filter " style="float:right;margin:20px 10px 10px 10px">
+    
+</div>
+      <div class="modal-header"> 
+        <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+            <form  action="{:url('/admin/Rbacaction/addUserHandle')}" method="post" enctype="multipart/form-data" class="form-horizontal">
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">用户名</label>
+                <div class="col-sm-9 css">
+                  <input type="text" name="username" class="form-control mgrp" id="admin_name" placeholder="请输入管理员名称"><span id="notice" style="color:red;font-size: 12px;display:none">(管理员名已存在)</span>
+                  <span id="notice4" class="grp " style="color:red;font-size: 12px;display:none">(管理员名不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">性别</label>
+                <div class="col-sm-9 radio">
+                     <!-- <input type="text" name="sex" class="form-control mgrp" id="info" placeholder="请注入你的性别"> -->
+                     <input type="radio" name="radio" checked="checked" value="男">&ensp;&ensp;男 &ensp;&ensp;&ensp;
+                     <input type="radio" name="radio" value="女">&ensp;&ensp;女
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">密码</label>
+                <div class="col-sm-9 fff">
+                     <input type="password" name="pass" class="form-control mgrp" id="info" placeholder="请注入你的密码">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">重复密码</label>
+                <div class="col-sm-9 fff">
+                     <input type="password"  name="regpass" class="form-control mgrp" id="reinfo" placeholder="再次输入密码">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">电话</label>
+                <div class="col-sm-9 css2">
+                     <input type="text" name="tel" class="form-control mgrp" id="tel" placeholder="请输入你的手机号码">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">邮件</label>
+                <div class="col-sm-9 email">
+                     <input type="text" name="email" class="form-control mgrp" id="reinfo" placeholder="请输入你的邮件">
+                </div>
+              </div>
+
+              <div class="form-group" id="acc">
+                <label for="url" class="col-sm-3 control-label" >所属角色</label>
+                <div class="col-sm-9 fafa">
+                   <p>
+                     <select name="role_id[]" style="width:280px;height:34px; border-radius:4px;">
+                      <option value="35" style="background: #ccc">Youke(游客)</option>
+                      {foreach $res as $val}
+                          <option value="{$val['rid']}">{$val['role_name']}({$val['remark']})</option>
+                      {/foreach}
+                     </select>
+                      <span class="add-role">添加一个角色</span>
+                   </p>
+                </div>
+              </div>
+              <div>
+                
+
+              <!-- 图片插件应用 -->
+              <div class="container">
+
+                  <div class="imageBox">
+
+                    <div class="thumbBox"></div>
+
+                    <div class="spinner" style="display: none"><img src="__PUBLIC__/images/avatar.png" style="width:200px;height:200px;margin-top:24px;margin-left:10px;float: left; border-radius: 50%;" /></div>
+
+                  </div>
+
+                  <div class="action"> 
+
+                    <!-- <input type="file" id="file" style=" width: 200px">-->
+
+                    <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
+
+                      <label for="upload-file">上传图像</label>
+
+                      </a>
+
+                      <input type="file" class="" name="file" id="upload-file" />
+
+                    </div>
+
+                    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+
+                    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+
+                    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+
+                  </div>
+
+                  <div class="cropped"></div>
+
+                </div>
+
+                
+
+
+              </div>
+              <div class="modal-footer">
+        
+                <button id="last" type="submit" class="btn btn-primary"  >保存添加</button>
+                <!-- <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" onclick="reset()" id="reset">取消</button> -->
+              </div>
+            </form>
+        </div>
+         
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+        
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div> 
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+<script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+        $(function(){
+          AjaxPage(1);
+        })
+
+
+</script>
+
+<!-- 图片插件应用 -->
+<script type="text/javascript">
+
+                 
+
+  $(window).load(function() {
+
+    
+
+    var options =
+
+    {
+
+      thumbBox: '.thumbBox',
+
+      spinner: '.spinner',
+
+      imgSrc: 'images/avatar.png'
+
+    }
+
+    var cropper = $('.imageBox').cropbox(options);
+
+    var img="";
+
+    $('#upload-file').on('change', function(){
+
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+
+        options.imgSrc = e.target.result;
+
+        cropper = $('.imageBox').cropbox(options);
+
+      }
+
+      reader.readAsDataURL(this.files[0]);
+
+      this.files = [];
+
+      $('#btnCrop').click();
+
+    })
+
+    $('#btnCrop').on('click', function(){
+
+       img = cropper.getDataURL();
+
+      $('.cropped').html('');
+
+      $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>12px*12px</p>');
+
+      $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>16px*16px</p>');
+/*
+      $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>16px*16px</p>');*/
+
+    })
+
+    function getImg(){
+
+      
+
+      }
+
+    $('#btnZoomIn').on('click', function(){
+
+      cropper.zoomIn();
+
+    })
+
+    $('#btnZoomOut').on('click', function(){
+
+      cropper.zoomOut();
+
+    })
+
+  });
+
+
+  
+  </script>
+
+</body>
+
+</html>

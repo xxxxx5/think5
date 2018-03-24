@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap.css">
+<title></title>
+<link rel="stylesheet" href="__PUBLIC__/css/pintuer.css">
+<link rel="stylesheet" href="__PUBLIC__/css/admin.css">
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/pintuer.js"></script>
+<script src="__PUBLIC__/js/jquery-1.11.3.js"></script>
+<style>
+      button[type=submit]  {
+        border:none;
+        background:#fff;
+      }
+      .inp1 input[type=text] {
+        width:130px;
+        height:40px;
+        text-align: center;
+        border: none;
+      }
+     .border-bottom ul li a button:hover {
+       background:  #00AAEE;
+     }
+    
+</style>
+</head>
+<body>
+
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 阅读列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <form method="post" action="{:url('book/sousuo')}">
+      <div class="padding border-bottom">
+        <ul class="search" style="padding-left:10px;">
+          
+          <li>
+            <input type="text" id="key_word" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+              <a href="" class="button border-main icon-search" onclick="changesearch()" > 
+                <button type='submit' id="search_button">搜索</button>
+            </a>
+            
+          </li>
+        </ul>
+      </div>
+    </form>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="100" style="text-align:left; padding-left:20px;"></th>
+        <th>封面</th>
+        <th>书名</th>
+        <!-- <th>书籍简介</th> -->
+        <th>作者</th>
+        <th>类型</th>
+        <th width="10%">最近更新</th>
+        <th>操作</th>
+      </tr>
+      {foreach $res as $val}
+      <volist name="list" id="vo">
+          <form method="post" action="{:url('book/updateBook')}?bid={$val['id']}" id="listform">
+            <tr>
+              <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="{$val['id']}" />
+               </td>
+              <td class="inp1"><img src="{$val['cover']}" style="width:60px;height:40px;" /></td>
+              <!-- <td class="inp1"><font color="#00CC99"><input type="text" name="description" value="{$val['description']}"></font></td> -->
+              <td class="inp1"><font color="#00CC99"><input type="text" name="bname" value="{$val['bname']}"></font></td>
+              <td class="inp1"><font color="#00CC99"><input type="text" name="author" value="{$val['author']}"></font></td>
+              <td class="inp1"><font color="#00CC99"><input type="text" name="name" value="{$val['name']}"></font></td>
+              
+              <td class="inp1"><input type="text" name="uptime" value="{$val['uptime']}"></td>
+              <!-- <td>
+                <select name="isvouch" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeisvouch(this)">
+                  <option value="">推荐</option>
+                  <option value="1">是</option>
+                  <option value="0">否</option>
+                </select>
+              </td>
+              <td>
+                <select name="istop" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeistop(this)">
+                  <option value="">置顶</option>
+                  <option value="1">是</option>
+                  <option value="0">否</option>
+                </select>
+              </td> -->
+              <td>
+                 <div class="button-group"> 
+                  <button type="submit">
+                      <a class="button border-main">
+                        <span class="icon-edit"></span> 编辑
+                    
+                      </a>
+                  </button>
+                  <button type="submit">
+                    <a class="button border-red" href="{:url('book/bookShelf')}?hid={$val['id']}" >
+                      <span class="icon-trash-o"></span>放入回收站
+                    </a>
+                  </button>
+                </div>
+              </td>
+            </tr>
+     		 </form>
+     {/foreach}
+      <tr>
+       <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
+          全选 </td>
+        <td colspan="7" style="text-align:left;padding-left:20px;"><a href="" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a> <a href="javascript:void(0)" style="padding:5px 15px; margin:0 10px;" class="button border-blue icon-edit" onclick="sorts()"> 排序</a> 操作：
+        <!--   <select name="ishome" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeishome(this)">
+            <option value="">首页</option>
+            <option value="1">是</option>
+            <option value="0">否</option>
+          </select> -->
+       
+          <select name="isvouch" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeisvouch(this)">
+            <option value="">推荐</option>
+            <option value="1">是</option>
+            <option value="0">否</option>
+          </select>
+       <!-- 
+          <select name="istop" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeistop(this)">
+            <option value="">置顶</option>
+            <option value="1">是</option>
+            <option value="0">否</option>
+          </select> -->
+         <!--  &nbsp;&nbsp;&nbsp;
+          
+          移动到：
+          <select name="movecid" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecate(this)">
+            <option value="">请选择分类</option>
+            <option value="">产品分类</option>
+            <option value="">产品分类</option>
+            <option value="">产品分类</option>
+            <option value="">产品分类</option>
+          </select>
+          <select name="copynum" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecopy(this)">
+            <option value="">请选择复制</option>
+            <option value="5">复制5条</option>
+            <option value="10">复制10条</option>
+            <option value="15">复制15条</option>
+            <option value="20">复制20条</option>
+          </select></td> -->
+      </tr>
+      <tr>
+        <!-- <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td> -->
+          <td colspan="8"><div class="pagelist">{$page}</div></td>
+        
+      </tr>
+    </table>
+  </div>
+
+<script type="text/javascript">
+
+//分页
+
+//搜索
+function changesearch(){	
+	return document.getElementById('id')
+}
+var putWordsObj = $('key_word');
+putWordsObj.onfocus = function () {
+
+  if (this.value="请输入搜索关键字")this.value='' ;
+
+}
+putWordsObj.onblur = function() {
+  if (!this.value)this.value="请输入搜索关键字";
+}
+$('search_button').onclick = function () {
+  var content = $('tr').innerHTML;
+  var keyWords = $('key_word').value;
+  content = search_do(content,keyWords);
+  $('tr').innerHTML = content;
+  alert(content);
+}
+function search_do(content,keyWord){
+var keyWordArr = keyWord.replace(/[\s]+/g,' ').split(' ');
+var re;
+for(var n = 0; n < keyWordArr.length; n ++) {
+//re = new RegExp(">[\s\S]*?"+keyWordArr[n]+"[\s\S]*?<\S","gmi");
+re = new RegExp(""+keyWordArr[n]+"","gmi");
+content = content.replace(re,'<span style="color:#0f0;background-color:#ff0">'+keyWordArr[n]+'</span>');
+}
+return content;
+}
+
+//单个删除
+function del(id,mid,iscid){
+	if(confirm("您确定要删除吗?")){
+		
+	}
+}
+
+//全选
+$("#checkall").click(function(){ 
+  $("input[name='id[]']").each(function(){
+	  if (this.checked) {
+		  this.checked = false;
+	  }
+	  else {
+		  this.checked = true;
+	  }
+  });
+})
+
+//批量删除
+function DelSelect(){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		var t=confirm("您确认要删除选中的内容吗？");
+		if (t==false) return false;		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择您要删除的内容!");
+		return false;
+	}
+}
+
+// 是否置顶
+
+
+</script>
+</body>
+</html>

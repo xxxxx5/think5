@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>角色列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/roleHandle.js"></script>
+    <style type="text/css">
+        #pagelist{
+            position:fixed;
+            top:470px;
+            left:10px;
+        }
+        #wrap {
+            float:left;
+            margin-top:80px;
+        }
+    </style>
+</head>
+    
+<body>
+<div class="page-toolbar">
+    <div class="page-filter " style="float:right;margin:20px 10px 10px 10px">
+       
+</div>
+
+<!-- 角色设置弹窗 -->
+
+    <!-- <div class="modal-content"> -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="gridSystemModalLabel">节点设置</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+
+            <form action="{:url('Rbacaction/addNodeHandle')}" method="post" class="form-horizontal">
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">{$type}名称</label>
+                <div class="col-sm-9">
+                  <input type="text" name="node_name" class="form-control mgrp" id="role_name" placeholder="应用名称"><span id="notice" style="color:red;font-size: 12px;display:none">(应用名称已存在)</span>
+                  <span id="notice4" class="grp " style="color:red;font-size: 12px;display:none">(应用名称不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">{$type}描述</label>
+                <div class="col-sm-9">
+                    <input name="node_title" class="form-control mgrp" rows="4" id="info" placeholder="应用描述"></input>
+                    <span id="notice2" class="grp" style="color:red;font-size: 12px;display:none">(应用描述不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">是否开启</label>
+                <div class="col-sm-9">
+                    <input type="radio" name="status" value='1' checked="checked" />&nbsp;开启&nbsp;
+                    <input type="radio" name="status" value='0'/>&nbsp;关闭
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">排序</label>
+                <div class="col-sm-9">
+                    <input name="sort" class="form-control mgrp" rows="4" id="info" placeholder="1"></input>
+                    <span id="notice2" class="grp" style="color:red;font-size: 12px;display:none">(排序不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="info" class="col-sm-3 control-label">排序</label> -->
+
+                <div class="col-sm-9">
+                    <input type="hidden" name="pid" value="{$pid}" class="form-control mgrp" rows="4" id="info"></input>
+                    <input type="hidden" name="level" value="{$level}" class="form-control mgrp" rows="4" id="info"></input>
+                    
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" >确认</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" onclick="reset()" id="reset">取消</button>
+               </div>
+            </form>
+        </div>
+         
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+        
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div> 
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</body>
+
+</html>

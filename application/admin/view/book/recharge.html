@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title>  
+    <link rel="stylesheet" href="__PUBLIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/admin.css">
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/pintuer.js"></script>  
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 充值记录</strong></div>
+  <div class="padding border-bottom">  
+  <!-- <a class="button border-yellow" href=""><span class="icon-plus-square-o"></span> 添加内容</a> -->
+  </div> 
+  <table class="table table-hover text-center">
+    <tr>
+      <th width="5%">ID</th>     
+      <th>充值金额</th>  
+      <th>书豆余额</th>    
+      <th>时间</th>    
+      <th width="250">操作</th>
+    </tr>
+   
+    <tr>
+      <td>17</td>      
+      <td>1.00</td>  
+      <td>100</td>      
+      <td>2017-12-20 11:03:33</td>      
+      <td>
+      <div class="button-group">
+     
+       <a class="button border-red" href="javascript:void(0)" onclick="return del(17)"><span class="icon-trash-o"></span> 删除</a>
+      </div>
+      </td>
+    </tr> 
+    
+   
+    
+    
+  </table>
+</div>
+<script>
+function del(id){
+	if(confirm("您确定要删除吗?")){
+		
+	}
+}
+</script>
+<div class="panel admin-panel margin-top">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>充值</strong><span>&nbsp;&nbsp;&nbsp;&nbsp;(1￥ =  100书豆)</span></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="">   
+      <input type="hidden" name="id"  value="" />  
+      <div class="form-group">
+        <div class="label">
+          <label>充值金额：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="money" value="" data-validate="required:请输入金额" />         
+          <div class="tips"><span></span></div>
+        </div>
+      </div> 
+      
+     <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 充值</button>
+		  
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="__PUBLIC_ID__/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/handle.js"></script> -->
+    <style type="text/css">
+      
+        #authorinfo input[type=text] {
+          border:#fff;
+        }
+    </style>
+</head>
+<script>
+    $(function(){
+      //添加友情链接
+         $('#sub').click(function() {
+          //alert(111);
+            $.ajax({
+              "url":'/admin/Index/addFlink',
+              "type":'POST',
+              "dataType":"json",
+              "async":true,
+              "data":{
+                "lname":$('.lname').val(),
+                "lurl":$('.lurl').val(),
+                "orderby":$('.orderby').val()
+              },
+              success:function(data){
+                //alert(data.status);
+               if(data.status == 1){
+                    var notice='添加成功';
+
+                    }else{
+                        var notice='添加失败';
+                    }
+
+                    layui.use('layer', function(){
+                      var layer = layui.layer;
+                      layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                             end: function(){ //此处用于演示
+                             window.location.href='/admin/Index/flink';
+                            }
+                        });
+                    });
+            }
+
+
+            });
+    });
+
+
+
+     //删除友情链接
+     $('.delflink').click(function(){
+        //alert($(this).attr('value'));
+        $.ajax({
+            'url':'/admin/Index/delFlink',
+            'type':'POST',
+            'dataType':'json',
+            "async":true,
+            "data":{
+                "lid":$(this).attr('value')
+            },
+            success:function(data){
+                //alert(data.status);
+               if(data.status == 1){
+                    var notice='删除成功';
+
+                    }else{
+                        var notice='删除失败';
+                    }
+
+                    layui.use('layer', function(){
+                      var layer = layui.layer;
+                      layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                             end: function(){ //此处用于演示
+                             window.location.href='/admin/Index/flink';
+                            }
+                        });
+                    });
+            }
+
+        });
+
+     });
+        });
+</script>
+<body>
+<div class="page-toolbar">
+</div>
+<div class="page-toolbar" >
+  <div class="modal-header"> 
+        <h4 class="modal-title" id="gridSystemModalLabel">链接列表</h4>
+  </div>
+    <div class="layui-btn-group " style="float:left;margin:20px 0 0 10px">
+        <!-- <a href="{:url('admin/Access/addaccess')}" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe61f;</i>添加权限</a> -->
+
+        <button type="button" class="layui-btn layui-btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="layui-icon">&#xe61f;</i>添加友情链接</button>
+       <!--  <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe640;</i>批量删除</button> -->
+    </div>
+</div>
+<div class="layui-form" style="float:left;margin:-10px 10px 0 10px">
+
+<table class="layui-table mt10" lay-even="" lay-skin="row" style="width:1058px">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>友情链接名称</th>
+                <th>友情链接URL</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        {foreach $res as $val}
+       <form action="{:url('link/linkup')}?id={$val['id']}" method="post">
+        <tbody id="authorinfo">
+           
+            <tr>
+                <td><input type="checkbox" value="" /></td>
+                <td><input type="text" name="id" value="{$val['id']}"/></td>
+                <td><input type="text" name="lname" value="{$val['lname']}"/></td>
+                <td><input type="text" name="url" value="{$val['url']}" /></td>
+                <td><input type="text" name="pid" value="{$val['pid']}"/></td>
+                <td>
+                    <div class="layui-btn-group">
+                        <div class="layui-btn-group">
+                        <!-- <a data-href="javascript:;" href="{:url('link/linkup')}" value="" title="编辑" class="update layui-btn layui-btn-primaryform layui-btn-small j-tr-del delflink"><i class="layui-icon">&#xe640;</i><>编辑</a> -->
+                         <button type="submit" class="layui-btn layui-btn-primary" data-toggle="modal1" data-target=".bs-example-modal-sm"><i class="layui-icon">&#xe61f;</i>编辑</button>
+                        </div>
+                        <div class="layui-btn-group">
+                        <a href="{:url('link/linkdel')}?id={$val['id']}"  value="" title="删除" class="del layui-btn layui-btn-primaryform layui-btn-small j-tr-del delflink"><i class="layui-icon">&#xe640;</i>删除</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+           
+        </tbody>
+      </form>
+      {/foreach}
+</table>
+</div>
+
+
+<!-- 添加友情链接 -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title" id="gridSystemModalLabel">添加友情链接</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+
+          <form action="{:url('link/linkadd')}" method="post" class="form-horizontal" enctype='multipart/form-data' id="infoLogoForm"/>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label ">名称</label>
+                <div class="col-sm-9" style="border:none;">
+                 <input type="text" value="" id="carousel" name="name" class="lname" style="height:25px;"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">URL</label>
+                <div class="col-sm-9" style="border:none;">
+                 <input type="text" value="" id="carousels" name="url" class="lurl" style="height:25px;" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">排序</label>
+                <div class="col-sm-9" style="border:none;">
+                 <input type="text" value="" id="carouselss" name="paixu" class="orderby" style="height:25px;" />
+                </div>
+              </div>
+               <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="sub" >确认</button>
+                  <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">取消</button>
+              </div>
+              <!-- <button type="submit" class="btn btn-primary" id="subs" >确认</button> -->
+             </form> 
+        </div>
+
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div>
+      </div>
+     
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <!--   <script src="/plugins/layui/layui.js"></script>
+    <script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+    </script> -->
+
+<!-- 编辑链接 -->
+
+</body>
+
+</html>
+
+<!-- <script type="text/javascript">
+
+$('#sub').click(function(){
+
+    $.ajax({
+
+        type       :"get",
+        url        :"{:url('link/linkadd')}",
+        data       : 'input',
+        success    : function(result){
+
+                    console.log(result);
+     
+        if (result.resultCode == 200) {
+            alert("success");
+        };
+   },
+    error:function(){
+        alert("异常!");
+    }
+    });
+});
+</script>
+ -->

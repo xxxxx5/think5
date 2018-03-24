@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>角色列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/node.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/roleHandle.js"></script>
+    <style type="text/css">
+        #wrap a {
+            color:blue;
+        }
+    </style>
+</head>
+    
+<body>
+
+    <div class="modal-header">
+         <h4 class="modal-title" id="gridSystemModalLabel">节点列表</h4>
+    </div>
+    <div id="wrap">
+        <a href="{:url('/admin/Rbacaction/addNode')}" class="add-app">添加应用</a>
+        {foreach $node as $key => $val}
+            <div class='app'>
+    
+                <p>
+                    <strong>{$val['node_title']}</strong>
+                    [<a href="{:url('/admin/Rbacaction/addNode')}?pid={$val['id']}&level=2">添加控制器</a>]
+                    
+                </p>
+    
+                    {foreach $val['child'] as $k => $v}
+                    <dl>
+                       
+                        <dt>
+                             <strong>{$v.node_title}</strong>
+                             [<a href="{:url('/admin/Rbacaction/addNode')}?pid={$v['id']}&level=3"/>添加方法</a>]
+                             
+                        </dt>
+                            {foreach $v['child'] as $kk => $vv}
+                                <dd>
+                                     <strong>{$vv['node_title']}</strong>
+                                     
+                                     [<a href="{:url('/admin/Rbacaction/nodeDel')}?uid={$vv['id']}">删除</a>]
+                                </dd>
+                            {/foreach}
+                       
+                    </dl>
+                    {/foreach}
+
+            </div>
+        {/foreach}
+    </div>
+     
+</body>
+
+</html>

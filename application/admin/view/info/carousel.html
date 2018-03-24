@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/handle.js"></script> -->
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.js"></script>
+    
+    <link rel="stylesheet" href="__PUBLIC__/zyupload/skins/zyupload-1.0.0.min.css " type="text/css">
+    <script type="text/javascript" src="__PUBLIC__/zyupload/zyupload-1.0.0.min.js"></script>
+
+    <style type="text/css">
+      #authorinfo {
+
+      }
+      .inpt input[type=text]{
+        width:250px;
+        border:none;
+      }
+      .page {
+        float:left;
+        margin-left:460px;       
+      }
+      .inpid {
+        width:100px;
+      }
+    </style>
+</head>
+<script>
+    $(function(){
+         $('#sub').click(function() {
+        var formData = new FormData();
+        formData.append("file", $('#carousel').get(0).files[0]);
+        formData.append("url", $('#url').val());
+        $.ajax({
+            url:'/admin/Index/upload',
+            type:'POST',
+            data:formData,
+            cache: false,
+            dataType:"json",
+            contentType: false,    //不可缺
+            processData: false,    //不可缺
+            success:function(data){
+               //alert(data);
+               if(data.status == 1){
+                    var notice='添加成功';
+
+                    }else{
+                        var notice='添加失败';
+                    }
+
+                    layui.use('layer', function(){
+                      var layer = layui.layer;
+                      layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                             end: function(){ //此处用于演示
+                             window.location='/admin/Index/carousel';
+                            }
+                        });
+                    });
+            }
+        });
+    });
+
+
+
+     //删除照片
+     $('.del').click(function(){
+        //alert($(this).attr('value'));
+        $.ajax({
+            'url':'/admin/Index/delCarousel',
+            'type':'POST',
+            'dataType':'json',
+            "async":true,
+            "data":{
+                "pid":$(this).attr('value')
+            },
+            success:function(data){
+                //alert(data.status);
+               if(data.status == 1){
+                    var notice='删除成功';
+
+                    }else{
+                        var notice='删除失败';
+                    }
+                    layui.use('layer', function(){
+                      var layer = layui.layer;
+                      layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                             end: function(){ //此处用于演示
+                             window.location='/admin/Index/carousel';
+                            }
+                        });
+                    });
+            }
+
+        });
+
+     });
+        });
+</script>
+<body>
+<div class="page-toolbar">
+  <div class="modal-header"> 
+        <h4 class="modal-title" id="gridSystemModalLabel">添加图片</h4>
+  </div>
+</div>
+<!-- <div class="page-toolbar" >
+    <div class="layui-btn-group " style="float:left;margin:20px 0 10px 10px">
+        <a href="admin/user/list" kit-target data-id='9' class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe61f;</i>用户管理</a>
+    </div>
+</div> -->
+<div class="page-toolbar" >
+    <div class="layui-btn-group " style="float:left;margin:20px 0 0 10px">
+        <!-- <a href="{:url('admin/Access/addaccess')}" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe61f;</i>添加权限</a> -->
+
+        <button type="button" class="layui-btn layui-btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="layui-icon">&#xe61f;</i>添加图片</button>
+       <!--  <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe640;</i>批量删除</button> -->
+    </div>
+</div>
+<div class="layui-form" style="float:left;margin:-10px 10px 0 10px">
+
+<table class="layui-table mt10" lay-even="" lay-skin="row" style="width:1058px;margin-top: 80px;">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr>
+                
+                <th>ID</th>
+                <th>图片</th>
+                <th>图片路径</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody id="authorinfo">
+           {foreach $res as $val}
+            <tr>
+                <!-- <td><input type="checkbox" name="ids[]" value="" lay-skin="primary">d</td> -->
+                <td class="inpid">{$val['id']}</td>
+                <td class="inpt"><img src="{$val['pic_url']}" style="width:100px;height:50px;"/></td><!-- -->
+                <td class="inpt"><input type="text" name="picurl" value="{$val['pic_url']}"></td>
+                <td class="inpt"><input type="text" name="jump" value="{$val['create_time']}"></td>
+                <td>
+
+                    <div class="layui-btn-group">
+                        <div class="layui-btn-group">
+                        <a href="{:url('pic/picdel')}?id={$val['id']}" value="" title="删除" class="del layui-btn layui-btn-primaryform layui-btn-small j-tr-del"><i class="layui-icon">&#xe640;</i>删除</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+          {/foreach}
+          
+        </tbody>
+        
+</table>
+
+</div>
+
+
+<!-- 添加图片 -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+<!--   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header"> -->
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+   <!--      <h4 class="modal-title" id="gridSystemModalLabel">添加图片</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+            
+              <div class="form-group"> -->
+                <!-- <label for="access_name" class="col-sm-3 control-label">添加图ds片</label>
+                <div class="col-sm-9" style="border:none;"> -->
+                 
+                  <!-- 多文件上传 开始-->
+          <!-- <form enctype="multipart/form-data" action="{:url('pic/morePic')}" method="post" class="form-horizontal"  /> -->
+
+                      <div id="zyupload" class="zyupload"></div>  
+                      
+                      <script type="text/javascript">
+                      $(function(){
+                        // 初始化插件
+                        $("#zyupload").zyUpload({
+                          width            :   "650px",                 // 宽度
+                          height           :   "400px",                 // 宽度
+                          itemWidth        :   "140px",                 // 文件项的宽度
+                          itemHeight       :   "115px",                 // 文件项的高度
+                          url              :   "{:url('pic/morepic')}",              // 上传文件的路径
+                          fileType         :   ["jpg","png","txt","js","exe"],// 上传文件的类型
+                          fileSize         :   51200000,                // 上传文件的大小
+                          multiple         :   true,                    // 是否可以多个文件上传
+                          dragDrop         :   true,                    // 是否可以拖动上传文件
+                          tailor           :   true,                    // 是否可以裁剪图片
+                          del              :   true,                    // 是否可以删除文件
+                          finishDel        :   false,           // 是否在上传文件完成后删除预览
+                          /* 外部获得的回调接口 */
+                          onSelect: function(selectFiles, allFiles){    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+                            console.info("当前选择了以下文件：");
+                            console.info(selectFiles);
+                          },
+                          onDelete: function(file, files){              // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
+                            console.info("当前删除了此文件：");
+                            console.info(file.name);
+                          },
+                          onSuccess: function(file, response){          // 文件上传成功的回调方法
+                            console.info("此文件上传成功：");
+                            console.info(file.name);
+                            console.info("此文件上传到服务器地址：");
+                            console.info(response);
+                            $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
+                          },
+                          onFailure: function(file, response){          // 文件上传失败的回调方法
+                            console.info("此文件上传失败：");
+                            console.info(file.name);
+                          },
+                          onComplete: function(response){               // 上传完成的回调方法
+                            console.info("文件上传完成");
+                            console.info(response);
+                          }
+                        });
+                        
+                      });
+                    
+                    </script> 
+
+                  <!-- 多文件上传 结束-->
+                  <div class="modal-footer">
+                <!-- <button type="submit" class="btn btn-primary" id="sub">确认</button> -->
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">取消</button>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">添加URL</label>
+                <div class="col-sm-9" style="border:none;">
+                 <input type="text" name="pic_url" value="" id="url" style="width:160px;height:35px;"/>
+                </div>
+             </div> -->
+              
+            </form>
+        </div>
+
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="page">{$page}</div>
+
+    <script src="/plugins/layui/layui.js"></script>
+    <script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+    </script>
+</body>
+
+</html>

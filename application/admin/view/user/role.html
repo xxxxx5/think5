@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>角色列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/roleHandle.js"></script>
+    <style type="text/css">
+        #pagelist{
+            position:fixed;
+            top:470px;
+            left:10px;
+        }
+    </style>
+</head>
+    
+<body>
+  
+<div class="page-toolbar">
+    <div class="page-filter " style="float:right;margin:20px 10px 10px 10px">
+       
+</div>
+
+<form class="page-list-form" >
+<div class="page-toolbar" >
+    <div class="layui-btn-group " style="float:left;margin:20px 0 10px 10px">
+        <button type="button" class="layui-btn layui-btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="layui-icon">&#xe61f;</i>添加角色</button>
+        <!-- <button type="button" class="layui-btn layui-btn-primary" id="btn2"><i class="layui-icon">&#xe640;</i>批量删除</button> -->
+    </div>
+</div>
+<div class="layui-form" style="float:left;margin:-10px 10px 0 10px">
+    <table class="layui-table mt10" lay-even="" lay-skin="row" style="width:1058px">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr>
+                <th> </th>
+                <th>角色名称</th>
+                <th>角色简介</th>
+                <!-- <th>创建时间</th> -->
+                <th>操作</th>
+            </tr> 
+            
+            <tr>
+                <th> </th>
+                <th><input type="text" name="role_name" value=""></th>
+                <th><input type="text" name="remark" value=""></th>
+                <!-- <th>创建时间</th> -->
+                <th>操作</th>
+            </tr> 
+           
+        </thead>
+        <tbody id="result">
+          
+           
+        </tbody>
+       
+    </table>
+<div id = 'pagelist'>
+        
+</div>
+</div>
+</form>
+
+<!-- 角色设置弹窗 -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="gridSystemModalLabel">角色设置</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+            <form action="{:url('RbacAction/addRoleHandle')}" method="post" class="form-horizontal">
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">角色名称</label>
+                <div class="col-sm-9">
+                  <input type="text" name="role_name" class="form-control mgrp" id="role_name" placeholder="角色名称"><span id="notice" style="color:red;font-size: 12px;display:none">(角色名已存在)</span>
+                  <span id="notice4" class="grp " style="color:red;font-size: 12px;display:none">(角色名不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="info" class="col-sm-3 control-label">角色简介</label>
+                <div class="col-sm-9">
+                    <input name="remark" class="form-control mgrp" rows="4" id="info" placeholder="角色简介"></input>
+                    <span id="notice2" class="grp" style="color:red;font-size: 12px;display:none">(简介不能为空)</span>
+                </div>
+              </div>
+              <div class="form-group" id="acc">
+                <label for="url" class="col-sm-3 control-label" >是否开启：</label>
+                <div class="col-sm-9 " id="access_ed">
+                    
+                    <div class="col-sm-6 ">
+                        <!-- <input id="" style="margin-top: 10px" type="checkbox" name="aid" value=""> -->
+                        <input type="radio" name="status" value='1' checked="checked" />&nbsp;开启&nbsp;
+                        <input type="radio" name="status" value='0'/>&nbsp;关闭
+                    </div>
+                    
+                    
+                </div>
+              </div>
+              <div class="modal-footer">
+        
+                <button type="submit" class="btn btn-primary" >确认</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" onclick="reset()" id="reset">取消</button>
+            </div>
+            </form>
+        </div>
+         
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+        
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div> 
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="/plugins/layui/layui.js"></script>
+    <script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+        $(function(){
+          AjaxPage(1);
+        })
+    </script>
+</body>
+
+</html>

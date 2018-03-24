@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>角色列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/node.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/roleHandle.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <style type="text/css">
+        #wrap a {
+            color:blue;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('input[level=1]').click(function () {
+
+               if ( $('input[level=1]').prop('checked') ) {
+                 $(':input').attr('checked',true);
+             }  else {
+                 $(':input').attr('checked',false);
+             }
+            });
+
+            $('input[level=2]').click(function () {
+                var inputs = $(this).parents('dl').find('input');
+                $(this).attr('checked') ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+            });
+        });
+    </script>
+</head>
+    
+<body>
+
+    <!-- <div class="modal-header">
+         <h4 class="modal-title" id="gridSystemModalLabel">节点列表</h4>
+    </div> -->
+    <form action="{:url('Rbacaction/setAccess')}" method="post" >
+
+        <div id="wrap">
+            <a href="{:url('/admin/Rbacaction/role')}" class="add-app">返回按钮</a>
+            
+            {foreach $node as $key => $val}
+                <div class='app'>
+        
+                    <p>
+                        <strong>{$val['node_title']}</strong>
+                        <input type="checkbox" name="access[]" value="0_1" level='1' {if condition="$val['access']"} checked="checked" {/if} />
+                    </p>
+        
+                        {foreach $val['child'] as $k => $v}
+                        <dl>
+                           
+                            <dt>
+                                 <strong>{$v.node_title}</strong>
+                                 <input type="checkbox" name="access[]" value="{$v['id']}_2" level='2' {if condition="$v['access']"} checked="checked" {/if}  />
+        
+                            </dt>
+                                {foreach $v['child'] as $kk => $vv}
+                                    <dd>
+                                         <span>{$vv['node_title']}</span>
+                                         <input type="checkbox" class="dls"   name="access[]" value="{$vv['id']}_3"
+                                         level='3' {if condition="$vv['access']"} checked="checked" {/if} />
+                                    </dd>
+                                {/foreach}
+                           
+                        </dl>
+                        {/foreach}
+
+                </div>
+            {/foreach}
+        </div>
+        <input type="hidden" name="rid" value="{$rid}" />
+        <input type='submit' value="保存修改" style="display: block;margin: 20px auto; cursor: pointer; width:80px; background: #ccc;" />
+     </form>
+</body>
+
+</html>

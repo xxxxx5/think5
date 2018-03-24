@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>权限列表</title>
+     <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/handle.js"></script>
+
+</head>
+    
+<body>
+<div class="page-toolbar">
+    <div class="page-filter " style="float:right;margin:20px 10px 10px 10px">
+        
+</div>
+
+<form class="page-list-form" >
+<div class="page-toolbar" >
+    <div class="layui-btn-group " style="float:left;margin:20px 0 10px 10px">
+        <!-- <a href="{:url('admin/Access/addaccess')}" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe61f;</i>添加权限</a> -->
+
+        <button type="button" class="layui-btn layui-btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="layui-icon">&#xe61f;</i>添加权限</button>
+        <!-- <button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe640;</i>批量删除</button> -->
+    </div>
+</div>
+<div class="layui-form" style="float:left;margin:-10px 10px 0 10px">
+    <table class="layui-table mt10" lay-even="" lay-skin="row" style="width:1058px">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr>
+                <th> </th>
+                <th>权限名称</th>
+                <th>权限简介</th>
+                <th style="width:200px">创建时间</th>
+                <!-- <th>状态</th> -->
+                <th>操作</th>
+            </tr> 
+        </thead>
+        <tbody id="result">
+        
+        
+            
+            <tr>
+                <td></td>
+                <td class="access_name"></td>
+                <td class="access_info"></td>
+                <td></td>
+                <td>
+                  
+                    <div class="layui-btn-group">
+                        <a title="删除权限" class="layui-btn layui-btn-primary layui-btn-small j-tr-del" value=""><i class="layui-icon">&#xe640;</i>删除权限</a>
+                    </div>
+                   
+                </td>
+            </tr>
+          
+        </tbody>
+    </table>
+	
+</div>
+</form>
+
+<!-- 权限设置弹窗 -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title" id="gridSystemModalLabel">权限设置</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+            {foreach $res as $val}
+            
+            <form class="form-horizontal">
+               <td class="inp1"><img src="{$val['cover']}" style="width:60px;height:40px;" /></td>
+              <!-- <td class="inp1"><font color="#00CC99"><input type="text" name="description" value="{$val['description']}"></font></td> -->
+              <td class="inp1"><font color="#00CC99"><input type="text" name="bname" value="{$val['bname']}"></font></td>
+              <td class="inp1"><font color="#00CC99"><input type="text" name="author" value="{$val['author']}"></font></td>
+              <td class="inp1"><font color="#00CC99"><input type="text" name="name" value="{$val['name']}"></font></td>
+              
+              <td class="inp1"><input type="text" name="uptime" value="{$val['uptime']}"></td>
+              <!-- <div class="form-group">
+                <label for="url" class="col-sm-3 control-label" >状态</label>
+                <div class="col-sm-9 ">
+                    <input id="kai" style="margin-top: 10px" type="radio" name="status" value='1' checked>开启
+                     <input id ='guan' style="margin-top: 10px" type="radio" name="status" value='0'>关闭
+                </div>
+              </div> -->
+              
+            </form>
+        </div>
+         {/foeach}
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+        
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div> 
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" id="sub" data-dismiss="modal">确认</button>
+        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" onclick="reset()">取消</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="/plugins/layui/layui.js"></script>
+    <script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+    </script>
+</body>
+
+</html>

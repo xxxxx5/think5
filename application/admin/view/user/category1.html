@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/three-right.css" />
+    <!-- <script type="text/javascript" src="/static/js/handle.js"></script> -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/layui.css" media="all">
+    <style type="text/css">
+      #bankuai {
+        float:left;
+        margin-left:600px;
+        margin-top:-30px;
+      }
+      #bankuai button{
+        border:#fff;
+      }
+    </style>
+</head>
+    <script src="__PUBLIC__/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.js"></script>
+    <script src="__PUBLIC__/js/layui.js"></script>
+<body>
+    <div class="main clearFix" style="margin-left:60px;">
+      <p class="topinfo-one" style="margin-top:20px;">版块管理
+          <button type="button" class="layui-btn layui-btn-primary" style="border:none;margin-top: -3px;" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="layui-icon"></i>添加版块</button>
+      </p>
+      <hr />
+      <ul class="one">
+        <li class="frist">显示顺序</li>
+        <li class="second">版块名称</li>
+        <li class="third">版主</li>
+      </ul><br />
+      <hr />
+      
+      
+    </div>
+<script>
+//添加版块
+  $(function(){
+    $('#sub').click(function(){
+      $.ajax({
+      "url":'/admin/Index/addcate',
+      'type':'post',
+     'dataType':'json',
+     "data":{
+      "pid":$('#parent').val(),
+      "cname":$('#cname').val(),
+      "orderby":$('#orderby').val()
+
+     },
+     success:function(data)
+     {
+        window.location='/admin/Index/category';
+
+          }
+   });
+    });
+
+    //删除版块
+    $('#delcate').click(function(){
+                var arr=[];
+                $('.check:checked').each(function(){
+                  arr.push($(this).val());
+                })
+                //alert(arr);
+                var cid = arr.join(',');
+                $.ajax({
+                  "url":'/admin/Index/delcate',
+                 'type':'post',
+                 'dataType':'json',
+                 "data":{
+                  "cid":cid,
+                 },
+                 success:function(data){
+                    
+                 }
+                });
+
+    });
+  })
+</script>
+
+
+
+<!-- 添加版块-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title" id="gridSystemModalLabel">添加版块</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10">
+           
+            <form action="{:url('cate/catect')}" method="post" class="form-horizontal" enctype='multipart/form-data' id="infoLogoForm"/>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">添加版块</label>
+                <div class="col-sm-9" style="border:none;">
+                  
+                 <select style="width:150px;height:40px;" id="parent" name="pid">
+
+                    <option value="0">如不选择默认为大板块</option>
+                    {foreach $res as $val}
+                    <option value="{$val['id']}">{$val['level']}级分类{$val['name']}</option>
+                    {/foreach}
+                 </select>
+                 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">版块名称</label>
+                <div class="col-sm-9" style="border:none;">
+                  <input id="cname" name="name" style="width:150px;height:40px;" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="access_name" class="col-sm-3 control-label">等级</label>
+                <div class="col-sm-9" style="border:none;">
+                  <input id="orderby" name="level" style="width:150px;height:40px;" type="text" onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="请输入数字" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="sub" >确认</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">取消</button>
+              </div>
+            </form>
+            
+        </div>
+
+        </div>
+        <div class="row">
+      <div class="col-xs-1 col-md-3"></div>
+      <div class="col-xs-9 col-md-5">
+
+        </div>
+    <div class="col-xs-6 col-md-4"></div>
+</div>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+  </body>
+  </html>
