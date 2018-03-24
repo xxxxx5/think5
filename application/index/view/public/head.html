@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__INDEX_CSS__/imain.css">
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+	<script language="javascript" src="__INDEX_JS__/jquery.easing.min.js"></script>
+	<script language="javascript" src="__INDEX_JS__/custom.js"></script>
+</head>
+<body>
+	<div class="topbar">
+	<div class="container">
+		<div style="float:left;margin-top: 10px;margin-left: 94px;font-size: 15px;">
+			<a href="/index">首页</a>
+		</div>
+		<div class="topbar-cart" style="font-size: 15px;">
+			<a href="#"><i></i><em class="iconfont" style="font-size: 15px;">&#xe60c;</em>书架</a>
+		</div>
+		 <div class="topbar-info">
+		 	{if $Think.session.username == null}
+				<li style="float: left;list-style-type: none;font-size: 15px;" class="openlogin" >
+					<a href="/index/User/login" style="font-size: 15px;" class="link">登陆</a>
+				</li>
+					<span class="ver">|</span>
+				<li style="float: left;list-style-type: none;font-size: 15px;" class="openlogin" >
+					<a href="/index/User/register" style="font-size: 15px;" class="link">注册</a>
+				</li>
+				<span class="ver">|</span>
+			{else $Think.session.username !== null}
+				<li style="float: left;list-style-type: none;font-size: 15px;">
+					<span>你好, {$Think.session.username}</span>
+				</li>
+					<span class="ver">|</span> 
+				 <a href="/index/personal/personal" style="font-size: 15px;" class="link">个人中心</a>
+				 <span class="ver">|</span> 
+				 <a href="/index/User/logout" style="font-size: 15px;" class="link">退出</a>
+			 {/if}
+				<span class="ver">|</span>
+			<a href="#" style="font-size: 15px;" class="link">消息通知 (0)</a>
+		</div> 
+		
+	</div>
+</div>
+</body>
+</html>
+

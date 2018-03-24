@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="utf-8">
+
+        <title>登录</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="description" content="">
+
+        <meta name="author" content="">
+        <!-- CSS -->
+
+        <link rel="stylesheet" href="__INDEX_CSS__/lreset.css">
+        <link rel="stylesheet" href="__INDEX_CSS__/reveal.css">
+        <link rel="stylesheet" href="__INDEX_CSS__/lsupersized.css">
+        <link rel="stylesheet" href="__INDEX_CSS__/lstyle.css">
+        <script type="text/javascript" src="__INDEX_JS__/jquery.reveal.js"></script>
+        <script type="text/javascript" src="__INDEX_JS__/jquery-1.4.4.min.js"></script>
+        <style type="text/css">
+            .dsf {margin-top: 20px;}
+            .dsf p{font-size: 18px;font-family: 宋体;font-weight: bold; color: red;}
+        </style>
+        <script type="text/javascript" src="http://open.51094.com/user/myscript/15ab453363b27b.html"></script>
+
+    </head>
+
+    <body>
+        <div class="page-container">
+
+            <h1>登录</h1>
+
+            <form action="/index/user/doLogin" method="post">
+
+                <input type="text" name="username" class="username" placeholder="Username" id="nick"><span style="float:left;margin-left:2px;margin-top:3px;" id="p1"></span>
+
+                <input type="password" name="password" class="password" placeholder="Password" id="pwd"><span style="float:left;margin-left:2px;margin-top:3px;" id="p2"></span>
+
+                <div style="margin-top:3px;">
+                    <a href="/index/user/fsyj" style="margin-left:220px;">忘记密码?</a>
+                </div>
+
+                <button type="submit">Sign me in</button>
+
+                <!-- <div class="error"><span>+</span></div> -->
+                
+
+            </form>
+            
+
+            <div class="dsf">
+
+                <p>第三方登录:</p>
+
+                <p style="margin-top:10px;">
+                   <span id="hzy_fast_login"></span>
+                </p>
+
+            </div>
+
+        </div>
+        <!-- Javascript -->
+
+        <script src="__INDEX_JS__/jquery-1.8.2.min.js"></script>
+
+        <script src="__INDEX_JS__/supersized.3.2.7.min.js"></script>
+
+        <script src="__INDEX_JS__/supersized-init.js"></script>
+
+        <script src="__INDEX_JS__/scripts.js"></script>
+    </body>
+</html>
+<script type="text/javascript">
+    //用户名失去焦点
+    $('#nick').blur(function(){
+        if($('[name=username]').val()=="")
+        {
+            $('#p1').html('用户名不能为空');
+            $('#p1').css('color','red');
+            return false;
+        }
+    });
+    //用户名获取焦点
+    $('#nick').focus(function(){
+        $('[name=username]').html('');
+        $('#p1').html('');
+    });
+
+    //密码失去焦点
+    $('#pwd').blur(function(){
+        if ($('[name=password]').val()=="")
+        {
+            $('#p2').html('密码不能为空');
+            $('#p2').css('color', 'red');
+            return false;
+        }
+    });
+
+    //密码获取焦点
+    $('#pwd').focus(function(){
+        $('[name=password]').html('');
+        $('#p2').html('');
+    });
+</script>

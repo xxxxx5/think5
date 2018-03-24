@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101460394","appkey":"ba4c2f4ec5a253783e7b080936939d4d","callback":"http://www.aitmy.cn/callback.php","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

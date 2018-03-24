@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>万道剑尊_第一章 授剑_百阅网_小说阅读</title>
+    <meta name="description" content="苍穹之上最新章节阅读，万道剑尊是一部异世大陆小说,由创作">
+    <meta name="keywords" content="万道剑尊">
+    <meta name="robots" content="all">
+    <meta name="googlebot" content="all">
+    <meta name="baiduspider" content="all">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit" />
+<!-- <link data-ignore="true" rel="shortcut icon" type="image/x-icon" href="//qidian.gtimg.com/qd/favicon/qd_icon.fb0b7.ico">
+
+<link data-ignore="true" rel="Bookmark" type="image/x-icon" href="//qidian.gtimg.com/qd/favicon/qd_icon.fb0b7.ico"> -->
+
+
+<link rel="shortcut icon" href="/static/img/title.png" type="image/x-icon">
+<link rel="stylesheet" data-ignore="true" href="__INDEX_CSS__/vote_popup.3844d.css" />
+<link rel="stylesheet" href="__INDEX_CSS__/bootstrap.min.css" media="all">
+</head>
+<script src="__INDEX_JS__/jquery-1.12.4.js"></script>
+<script src="__INDEX_JS__/layui.js"></script>
+<script src="__INDEX_JS__/layui.js"></script>
+<script>
+// 点赞
+$(function(){
+    // alert($('#thumb').attr('value'));
+    $('#thumb').click(function(){
+        //alert(111);
+        //判断用户是否存在
+            $.ajax({
+                "type":"POST",
+                "dataType":"json",
+                "async":true,
+                "url":"/index/Book/isLogin",
+                success:function(data){
+                    if(data.status == 0)
+                    {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        var notice=data.msg;
+                        layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                            end:function(){
+                            }
+                        });
+                    });
+                }else{
+        $.ajax({
+            "url":'/index/Book/thumb',
+             'type':'post',
+             'dataType':'json',
+             'data': {
+                "novel_id":$('#thumb').attr('value'),
+                "type":1,
+      },
+      success:function(data){
+       if(data.status == 1)
+                {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        var notice=data.msg;
+                        layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                            end:function(){
+
+
+
+                            }
+                        });
+                    });
+                }else{
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        var notice=data.msg;
+                        layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                            end:function(){
+
+                            }
+                        });
+                    });
+                }
+      }
+
+    });
+
+    }
+}
+
+    });
+        });
+
+
+    /*加入书架*/
+    $('#addBookBtn').click(function(){
+        //alert(111);
+        //判断用户是否存在
+            $.ajax({
+                "type":"POST",
+                "dataType":"json",
+                "async":true,
+                "url":"/index/Book/isLogin",
+                success:function(data){
+                    if(data.status == 0)
+                    {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        var notice=data.msg;
+                        layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                            end:function(){
+                            }
+                        });
+                    });
+                }else{
+        $.ajax({
+            "url":'/index/Book/thumb',
+             'type':'post',
+             'dataType':'json',
+             'data': {
+                "novel_id":$('#addBookBtn').attr('value'),
+                "type":0,
+      },
+      success:function(data){
+       if(data.status == 1){
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        var notice=data.msg;
+                        layer.open({
+                            title: '提示信息',
+                            type:0,
+                            content: notice,
+                            end:function(){
+                            }
+                        });
+                    });
+                }else{
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            var notice=data.msg;
+                            layer.open({
+                                title: '提示信息',
+                                type:0,
+                                content: notice,
+                                end:function(){
+
+                                }
+                        });
+                    });
+                }
+      }
+
+    });
+    }
+}
+
+    });
+});
+})
+
+</script>
+<body class="theme-0 ">
+<div class="share-img">
+    
+     <a name="top"></a>
+</div>
+<div class="wrap">
+    
+        <div class="read-header" id="readHeader" data-l1="40">
+    <div class="wrap-center cf">
+        <div class="left-nav fl">
+            <div class="logo">
+                <!-- <a class="logo-ico" href="javascript:"></a> -->
+            </div>
+            <ul>
+                <li class="site" data-l2="1">
+                    <a class="pin-logo" target="_blank" data-eid="qd_R01"><img src="__INDEX_IMAGES__/read.png"></a>
+                    <div class="dropdown">
+                        <a href="//www.qdmm.com" target="_blank" data-eid="qd_R02">起点女生网</a>
+                        <a href="//chuangshi.qq.com" target="_blank" data-eid="qd_R03">创世中文网</a>
+                        <a href="//yunqi.qq.com" target="_blank" data-eid="qd_R04">云起书院</a>
+                    </div>
+                </li>
+                <li class="app" data-l2="2">
+                </li>
+                <li id="j_nearRead" data-l2="3">
+                    <!-- <cite>最近阅读</cite> -->
+                </li>
+                <li class="quick-nav" data-l2="4">
+                   
+                </li>
+            </ul>
+        </div>
+        <div class="read-login fr">
+            <ul>
+        </div>
+    </div>
+</div>
+    
+    <div id="j_bodyRecWrap" class="hidden"></div>
+    <div class="crumbs-nav" data-l1="1">
+    
+    <a href="/" data-eid="qd_G01">首页</a><em class="iconfont">&#xe621;</em>
+        <a  target="_blank" data-chanid="22" id="j_chanId" data-eid="qd_G02" href="/index/Book/booklist/cid/1">玄幻</a><em class="iconfont">&#xe621;</em>
+        <a  target="_blank" data-chanid="22" id="j_chanId" data-eid="qd_G02" href="/index/Book/booklist/cid/3">异世大陆</a><em class="iconfont">&#xe621;</em>
+        <a class="act" href="/index/Book/novelinfo/nid/19" target="_blank" id="bookImg" data-bid="1010566688">万道剑尊</a>
+</div>
+    
+<div class="read-main-wrap font-family01" style="font-size:18px" id="j_readMainWrap">
+        <div id="j_chapterBox" data-l1="3">
+
+<div class="text-wrap" id="chapter-388636353" data-cid="388636353" data-purl="//read.qidian.com/chapter/YW-XtYincOfVl9ByXxZ_TQ2/3I3yS8w3Sc9Ms5iq0oQwLQ2" data-nurl="//read.qidian.com/chapter/YW-XtYincOfVl9ByXxZ_TQ2/y1a5NxYYLoHwrjbX3WA1AA2" data-info="0|388636301|388636370|0|0" >
+    <div class="main-text-wrap" >
+        <div class="text-head">
+            <div class="guide-box">
+                <cite></cite>
+                <p>点击书签后，可收藏每个章节的书签，“阅读进度”可以在个人中心书架里查看</p>
+            </div>
+            <a class="book-mark" href="javascript:" title="书签" data-cid="388636353" data-bid="1010566688" data-auid="4362150" data-eid="qd_R104"></a>
+            <h3 class="j_chapterName">第一章 授剑</h3>
+            <div class="text-info cf">
+                <div class="info fl">
+                    <a target="_blank" data-bid="1010566688" data-auid="4362150" data-eid="qd_R102"><em class="iconfont">&#xe60c;</em>万道剑尊</a>
+                        <a target="_blank" data-bid="1010566688" data-auid="4362150" data-eid="qd_R103"><em class="iconfont">&#xe650;</em></a>
+                    <!-- <i><em class="iconfont">&#xe64f;</em><span class="j_chapterWordCut">1808</span>字</i> -->
+                    <i><em class="iconfont">&#xe653;</em><span class="j_updateTime">2018-01-05 08:22:03</span></i>
+                </div>
+            </div>
+        </div>
+        <div class="read-content j_readContent">
+                                <p>
+	&nbsp;天宗王朝，天焱行省巴水郡剑侯府内。<br />
+	<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ldquo;梦儿，你这一剑还可以更快更凌厉一点。&rdquo;<br />
+	<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ps:新书开始，暂且保持一天三更，上午十二点一更，晚上八点同时更新两章，新书期一过立马爆发，同时提升更新速度保持一天四更或是五更左右，另外，本人已经正常完本《重生之我为神兽》等三部作品，人品信誉保证，担保绝不断更、绝不拖更、绝不太监、绝不烂尾，同时本书最后完本字数必将在四百万字以上，请大家放心阅读、跟读！</p>
+
+        </div>
+        <div class="admire-wrap">
+        </div>
+    </div>
+</div>
+        </div>
+<div class="chapter-control dib-wrap" data-l1="3">
+        <a id="j_chapterPrev" data-eid="qd_R107"    href="javascript:prevNotice();">上一章</a><span>|</span>
+    
+    <a href="/index/Book/novelinfo/nid/19" target="_blank" data-eid="qd_R108">目录</a><span>|</span>
+        
+    <a id="j_chapterNext" href="/index/Book/readNovel/nid/19/zid/61" data-eid="qd_R109" >下一章</a>
+    </div>
+        <div class="la-ball-pulse j_chapterLoad hidden">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<div class="float-wrap" id="j_floatWrap" data-l1="2">
+    <div class="left-bar-list" id="j_leftBarList">
+        <dl>
+            <dd id="j_navCatalogBtn" data-eid="qd_R42" >
+                <a href="/index/Book/novelinfo/nid/19"><i><em class="iconfont">&#xe619;</em><span>目录</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                    目录
+                </div>
+            </dd>
+           <dd id="j_navSettingBtn">
+                <a href="/index/Personal/personal"><i><em class="iconfont">&#xe65b;</em><span>个人中心</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                   个人中心
+                </div>
+            </dd>
+            <dd data-eid="qd_R84">
+                <a class="add-book" style="cursor:pointer;" id="addBookBtn" value="19" data-bookid="1010566688"><i><em class="iconfont">&#xe654;</em><span>书架</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                    加入书架
+                </div>
+            </dd>
+            
+        </dl>
+    </div>
+    <div class="right-bar-list" id="j_rightBarList">
+        <dl>
+            <!-- <dd id="navReward" data-showtype="3" data-aid="qd_R87">
+                <a href="javascript:" ><i><em class="iconfont">&#xe635;</em><span>加入书架</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                    点赞
+                </div>
+            </dd> -->
+            <dd id="navTicket" data-showtype="2" data-aid="qd_R88">
+                <a style="cursor:pointer;" id="thumb" value="19"><i><em class="iconfont">&#xe65d;</em><span>点赞</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                    点赞
+                </div>
+            </dd>
+            <dd id="j_discussHref" data-eid="qd_R89">
+                
+                <a href="/index/Book/novelinfo/nid/19#replay" target="_blank"><i><em class="iconfont">&#xe658;</em><span>评论</span></i></a>
+                <div class="guide-box">
+                    <cite></cite>
+                    评论
+                </div>
+            </dd>
+            <dd class="go-top" id="j_goTop" title="返回顶部" data-eid="qd_R90">
+                <a href="#top"><i><em class="iconfont">&#xe651;</em></i></a>
+            </dd>
+            
+        </dl>
+    </div>
+    <!-- <div class="guide-btn-wrap"> -->
+        <!-- <a class="guide-btn" id="j_guideBtn" href="javascript:" data-eid="qd_R41">指南</a> -->
+    <!-- </div> -->
+</div>
+
+<div id="userLevel" class="hidden"></div>
+<div id="authorId" data-authorid="4362150" class="hidden"></div>
+
+</body>
+<script type="text/javascript">
+    var notice
+    function buy(price,id)
+    {
+        var username = '';
+        if(username.length==0){
+           notice = '请先登录后再购买';
+           alertNotice();
+        }else{
+                $.ajax({
+                    type:'post',
+                    dataType:'json',
+                    url:'/index/Book/buyCatalog',
+                    async:true,
+                    data:{
+                        price:price,
+                        id:id
+                    },
+                    'success':function(data){
+                        if(data.status==1){
+                            notice = '购买成功';
+                            layui.use('layer', function(){
+                                var layer = layui.layer;
+                                    layer.open({
+                                        title: '提示信息', 
+                                        type:0,
+                                        content: notice,
+                                        end:function(){
+                                            history.go(0);
+                                        }
+                                });
+                            });
+                        }else if(data.status==2){
+                            notice = '书豆不足，请充值后再购买';
+                            alertNotice();
+                        }
+                    }
+                })
+
+        }
+
+    }
+    var prevNotice = function()
+    {
+        notice = '暂无上一章';
+        alertNotice();
+    }
+    var nextNotice = function()
+    {
+        notice = '暂无下一章';
+        alertNotice();
+    }
+    function alertNotice()
+    {
+        layui.use('layer', function(){
+            var layer = layui.layer;
+                layer.open({
+                    title: '提示信息', 
+                    type:0,
+                    content: notice,
+
+            });
+        });
+    }
+</script>
+</html>

@@ -17,7 +17,7 @@ return [
     // 应用调试模式
     'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => true,
+    'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -25,7 +25,9 @@ return [
     // 入口自动绑定模块
     'auto_bind_module'       => false,
     // 注册的根命名空间
-    'root_namespace'         => [],
+    'root_namespace'         => [
+        'duanxin'           =>'./../vendor/duanxin'
+    ],
     // 扩展函数文件
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
     // 默认输出类型
@@ -54,7 +56,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'admin',
+    'default_module'         => 'index',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
@@ -136,15 +138,20 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
+        //视图分离,视图路径,路径对应为app/view
+        //'view_base'    => __DIR__ . '/view/public'
     ],
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
-        '__PUBLIC__' => '/static/admin',
-        '__PUBLIC_ID__' => '/static/index',
-        '__PUBLIC_RG__' => '/../application/admin/view',
-        '__PUBLIC_PIC__' => '/pic_uploads/',
-    ],
+        //定义前台样式
+        '__INDEX_CSS__'      =>  '/static/index/css',
+        '__INDEX_JS__'       =>  '/static/index/js',
+        '__INDEX_IMAGES__'   =>  '/static/index/images',
+        '__INDEX_FONTS__'    =>  '/static/index/fonts',
+        //小说封面
+        '__INDEX_PICTURE__'  =>  '/static/index/picture',
+    ],   
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -241,36 +248,20 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
-
-    //验证码配置
     'captcha' => [
-    // 验证码字符集合
-    'codeSet' => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',
-    // 验证码字体大小(px)
-    'fontSize' => 14,
-    // 是否画混淆曲线
-    'useCurve' => true,
-    // 验证码图片高度
-    'imageH' => 38,
-    // 验证码图片宽度
-    'imageW' => 100,
-    // 验证码位数
-    'length' => 4,
-    // 验证成功后是否重置
-    'reset' => true
-    ],
-
-    //RBAC
-    'RBAC_SUPERADMIN'  => 'admin',     //超级管理员名称
-    'ADMIN_AUTH_KEY'   => 'superadmin',//超级管理员识别
-    'USER_AUTH_ON'     => true,        //是否开启验证
-    'USER_AUTH_TYPE'   => 1,           //验证类型（1：登陆验证，2：时时验证）
-    'USER_AUTH_KEY'    => 'uid',       //用户识别认证别号
-    'NOT_AUTH_MODULE'  => '',          //无需认证的控制器
-    'NOT_AUTH_ACTION'  => '',          //无需认证的动作方法
-    'RBAC_ROLE_TABLE'  => 'byread_role',//角色表名称 
-    'RBAC_USER_TABLE'  => 'byread_role_user' , //角色与用户的中间 表名称
-    'RBAC_ACCESS_TABLE'=> 'byread_access', //权限表名称
-    'RBAC_NODE_TABLE'  => 'byread_node',   //节点表名称
-
+        // 验证码字符集合
+        'codeSet' => '0123456789',
+        // 验证码字体大小(px)
+        'fontSize' => 20,
+        // 是否画混淆曲线
+        'useCurve' => true,
+        // 验证码图片高度
+        'imageH' => 40,
+        // 验证码图片宽度
+        'imageW' => 150,
+        // 验证码位数
+        'length' => 4,
+        // 验证成功后是否重置
+        'reset' => true
+    ]
 ];

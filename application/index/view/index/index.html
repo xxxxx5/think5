@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百阅网</title>
+	<!-- <link rel="shortcut icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon"> -->
+	<link rel="stylesheet" href="__INDEX_CSS__/imain.css">
+	
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+	<script language="javascript" src="__INDEX_JS__/jquery.easing.min.js"></script>
+	<script language="javascript" src="__INDEX_JS__/custom.js"></script>
+	<style type="text/css">
+		.header-logo img {float:left;position: absolute;margin-top:-64px;}
+		.y-link{width: auto; height: 20px; margin:0 auto; text-align: center; background: #FAFAFA;}
+		.y-link a {padding-left: 13px;font-size: 15px;}
+	</style>
+	<!-- <style type="text/css">
+		$(function(){
+		$('.carouselitem').eq(0).addClass('first');
+		$('.carouselbtn').eq(0).addClass('act');
+		$('.carousela').eq(0).addClass('aactive');
+	})
+	</style> -->
+</head>
+<body>
+	<!-- 顶部导航条 -->
+	{include file="public/head"}
+	<!-- header区 -->
+	<div class="header">
+		<div class="container">
+			<div class="header-logo">
+				<a href="index.html" class="logo"></a>
+				<img src="__INDEX_IMAGES__/baiyue.png"/>
+				<div class="advertising">
+					<a href="#"></a>
+				</div>
+			</div>
+			<div class="header-nav">
+				<ul class="navlist clearfix">
+					<li class="all">
+						<div class="side-nav">
+							<ul class="sidenav-list">
+								{foreach $lcate['dcate'] as $dcate}
+								<li class="side-item">
+									<a href="/index/book/lst">{$dcate['name']}
+										<i class="iconfont">&#xe6a7;</i>
+									</a>
+									<div class="children-nav">
+										<ul class="children-list">
+											{foreach $lcate['xcate'] as $xcate}
+												{if condition="$dcate['id'] == $xcate['pid']"}
+											<li style="float:left;">
+												<a href="/index/book/lst" class="link">{$xcate['name']}
+													<img src="__INDEX_IMAGES__/icon/holder_40.png">
+													<span class="title"></span>
+												</a>
+												<a href="/index/book/lst" class="buybtn">查看</a>
+											</li>
+											{/if}
+											{/foreach}
+										</ul>
+									</div>
+								</li>
+								{/foreach}
+							</ul>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="header-search">
+			<form action="" class="search-form">
+				<input type="text" class="search-text">
+				<input type="submit" class="search-btn iconfont" value="&#xe652;">
+			</form>	
+			</div>
+		</div>
+		<div class="main-nav">
+			<div class="container">
+				<ul class="mainnav-list clearfix">
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+					<li class="mainnav-item">
+						<div class="product-thumb">
+							<a href="#"><img src="https://c1.mifile.cn/f/i/g/2015/cn-index/xm6-320.png" width="160px"></a>
+						</div>
+						<div class="title">
+							<a href="#">大米6</a>
+						</div>
+						<p class="price">2499元</p>
+						<div class="product-label">
+							<div class="goods-label">新品</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 幻灯片区 -->
+	<div class="carousel container">
+		<div class="carousel-inner">
+			
+			{foreach $lpic as $v}
+			<img src="{$v['pic_url']}" class="item first">
+			{/foreach}
+
+		</div>
+		<div class="carousel-btn">
+			
+			<a href="javascript:" class="btn active"></a>
+			<a href="javascript:" class="btn"></a>
+			<a href="javascript:" class="btn"></a>
+			<a href="javascript:" class="btn"></a>
+			<a href="javascript:" class="btn"></a>
+			<a href="javascript:" class="btn"></a>
+			
+		</div>
+		<a href="javascript:" class="prev"><i class="iconfont">&#xe697;</i></a>
+		<a href="javascript:" class="next"><i class="iconfont">&#xe6a7;</i></a>
+	</div>
+	<!-- 最新作品 -->
+	<div class="single-goods">
+		<div class="container">
+			<div class="s-lg-title">
+				<span class="page-title">最新作品</span>
+				<div class="title-more">
+					<a href="javascript:" class="s-prev btn-default"><i class="iconfont">&#xe697;</i></a>
+					<a href="javascript:" class="s-next"><i class="iconfont">&#xe6a7;</i></a>
+				</div>
+			</div>
+			<div class="sgoods-content">
+				<ul class="sgoods-list clearfix" style="margin-left: 0; margin-left 0.5s ease">
+					{foreach $lnewbook as $val}
+					<li class="sgoods-item">
+						<div class="sgoods-thumb">
+							<a href="booklist.html"><img src="$val['cover']"></a>
+						</div>
+						<div class="goods-title">
+							<a href="" class="title">{$val['name']}</a>
+						</div>
+						<p class="goods-info"></p>
+						<p class="goods-price">类型:{$val['name']}</p>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 大米主要内容 -->
+	<div class="page-main">
+		<div class="container">
+			<!-- 热门专区 -->
+			<div class="home-ce clearfix">
+				<div class="title">
+					<span class="page-title">热门专区</span>
+					<div class="more">
+						<a href="/index/book/lst" class="more-text active">热门</a>
+						<a href="/index/book/lst" class="more-text">玄幻</a>
+						<a href="/index/book/lst" class="more-text">仙侠</a>
+						<a href="/index/book/lst" class="more-text">都市</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<ul class="lg-thumb-list clearfix">
+						<li class="goods-item left-s-thumb">
+							<a href="" class="s-thumb"><img src="__INDEX_JS__/holder.js/233x615" alt=""></a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-8">
+					<!-- 热门 -->
+					<ul class="goods-list list-active hot-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">热门1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+							<!-- <div class="product-label">
+								<div class="goods-label">新品</div>
+							</div> -->
+						</li>
+					</ul>
+					<!-- 玄幻 -->
+					<ul class="goods-list list tv-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">玄幻</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+					<!-- 仙侠 -->
+					<ul class="goods-list list pc-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">仙侠</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+					<!-- 都市 -->
+					<ul class="goods-list list home-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">都市</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 好评专区 -->
+			<div class="parts clearfix">
+				<div class="title">
+					<span class="page-title">好评专区</span>
+					<div class="more">
+						<a href="__URL__lst.html" class="more-text active">连载好评</a>
+						<a href=lst.html" class="more-text">完结好评</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<ul class="left-thumb-list clearfix">
+						<li class="goods-item left-m-thumb">
+							<a href="#" class="m-thumb-link"><img src="__INDEX_IMAGES__/icon/holder_110.png" class="m-thumb"></a>
+						</li>
+						<!-- <li class="goods-item left-m-thumb">
+							<a href="#" class="m-thumb-link"><img src="__INDEX_JS__/holder.js/233x300" class="m-thumb"></a>
+						</li> -->
+					</ul>
+				</div>
+				<div class="col-md-8">
+					<!-- 连载好评 -->
+					<ul class="goods-list list-active hot-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">热门1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+					<!--完结好评 -->
+					<ul class="goods-list list tv-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">电视1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 完结专区 -->
+			<div class="pia clearfix">
+				<div class="title">
+					<span class="page-title">完结专区</span>
+					<div class="more">
+						<a href="lst.html" class="more-text active">最近完结</a>
+						<a href="lst.html" class="more-text">免费完结</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<ul class="left-thumb-list clearfix">
+						<li class="goods-item left-m-thumb">
+							<a href="#" class="m-thumb-link"><img src="__INDEX_IMAGES__/icon/holder_110.png" class="m-thumb"></a>
+						</li>
+						<!-- <li class="goods-item left-m-thumb">
+							<a href="#" class="m-thumb-link"><img src="__INDEX_JS__/holder.js/233x300" class="m-thumb"></a>
+						</li> -->
+					</ul>
+				</div>
+				<div class="col-md-8">
+					<!-- 最近完结 -->
+					<ul class="goods-list list-active hot-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">热门1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+					<!-- 免费完结 -->
+					<ul class="goods-list list tv-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">电视1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 为你推荐 -->
+			<div class="reco-goods">
+				<div class="s-lg-title">
+					<span class="page-title">为你推荐</span>
+					<div class="title-more">
+						<a href="lst.html" class="reco-prev btn-default"><i class="iconfont">&#xe697;</i></a>
+						<a href="lst.html" class="reco-next"><i class="iconfont">&#xe6a7;</i></a>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<ul class="reco-list clearfix">
+						<li class="goods-item goods-item-m">
+							<div class="goods-thumb">
+								<a href="#"><img src="__INDEX_IMAGES__/icon/holder_110.png"></a>
+							</div>
+							<div class="goods-title">
+								<a href="#" class="title">推荐1</a>
+							</div>
+							<p class="goods-info">超长续航，多彩金属</p>
+							<p class="goods-price">1440元</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="y-link">
+		<span style="font-size:15px;">友情链接:</span>
+		{foreach $res as $value}
+		<a href="{$value['url']}" target="_blank">{$value['lname']}</a>
+		{/foreach}
+	</div>
+	{include file="public/foot"}
+	<!-- 页脚 -->
+</body>
+<script src="__INDEX_JS__/main.js"></script>
+<script src="__INDEX_JS__/holder.min.js"></script>
+
+</html>
