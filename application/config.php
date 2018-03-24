@@ -151,6 +151,12 @@ return [
         '__INDEX_FONTS__'    =>  '/static/index/fonts',
         //小说封面
         '__INDEX_PICTURE__'  =>  '/static/index/picture',
+
+         //admin
+        '__PUBLIC__' => '/static/admin',
+        '__PUBLIC_ID__' => '/static/index',
+        '__PUBLIC_RG__' => '/../application/admin/view',
+        '__PUBLIC_PIC__' => '/pic_uploads/'
     ],   
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -263,5 +269,17 @@ return [
         'length' => 4,
         // 验证成功后是否重置
         'reset' => true
-    ]
+    ],
+    //RBAC
+    'RBAC_SUPERADMIN'  => 'admin',     //超级管理员名称
+    'ADMIN_AUTH_KEY'   => 'superadmin',//超级管理员识别
+    'USER_AUTH_ON'     => true,        //是否开启验证
+    'USER_AUTH_TYPE'   => 1,           //验证类型（1：登陆验证，2：时时验证）
+    'USER_AUTH_KEY'    => 'uid',       //用户识别认证别号
+    'NOT_AUTH_MODULE'  => '',          //无需认证的控制器
+    'NOT_AUTH_ACTION'  => '',          //无需认证的动作方法
+    'RBAC_ROLE_TABLE'  => 'byread_role',//角色表名称 
+    'RBAC_USER_TABLE'  => 'byread_role_user' , //角色与用户的中间 表名称
+    'RBAC_ACCESS_TABLE'=> 'byread_access', //权限表名称
+    'RBAC_NODE_TABLE'  => 'byread_node',   //节点表名称
 ];
